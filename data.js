@@ -1,7 +1,30 @@
 const API_KEY = '938ba536'
 const MAX_PAGES = 20
 
-const processMovie = (movie) => ({
+//random test
+var randomMovieArray = ['Star Wars', 'Game of Thrones', 'Lord of the Rings', 'Harry Potter'];
+var randomNumber = Math.floor((Math.random() * randomMovieArray.length -1) + 1);
+var randomMovie = randomMovieArray[randomNumber];
+console.log(randomMovie)
+
+export const fetchRandom = async (randomMovie) => {
+    const url = `http://www.omdbapi.com/?apikey=${API_KEY}&t=${randomMovie}`
+    try {
+        const response = await fetch(url)
+        const results = await response.json()
+        console.log(results)
+        return results
+    } catch (err) {
+        return console.log(err)
+    }
+}
+
+
+fetchRandom()
+
+
+
+/* const processMovie = (movie) => ({
     title: movie.Title,
     year: movie.Year,
     type: movie.Type,
@@ -44,4 +67,4 @@ export const fetchById = async (id) => {
     } catch (err) {
         return console.log(err)
     }
-}
+} */
