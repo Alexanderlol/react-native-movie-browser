@@ -7,30 +7,29 @@ var randomNumber = Math.floor((Math.random() * randomMovieArray.length -1) + 1);
 var randomMovie = randomMovieArray[randomNumber];
 console.log(randomMovie)
 
-export const fetchRandom = async (randomMovie) => {
-    const url = `http://www.omdbapi.com/?apikey=${API_KEY}&t=${randomMovie}`
-    try {
-        const response = await fetch(url)
-        const results = await response.json()
-        console.log(results)
-        return results
-    } catch (err) {
-        return console.log(err)
-    }
-}
-
-
-fetchRandom()
-
-
-
-/* const processMovie = (movie) => ({
+const processMovie = (movie) => ({
     title: movie.Title,
     year: movie.Year,
     type: movie.Type,
     img: movie.Poster,
     imdbID: movie.imdbID
 })
+
+export const fetchRandom = async () => {
+    const url = `http://www.omdbapi.com/?apikey=${API_KEY}&t=${randomMovie}`
+    try {
+        const response = await fetch(url)
+        const results = await response.json()
+        console.log(results)
+        //results = results.concat(json.response)
+        return results
+    } catch (err) {
+        return console.log(err)
+    }
+}
+
+fetchRandom()
+/* 
 export const fetchMovies = async (response) => {
     const url = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${response}`
     try {
