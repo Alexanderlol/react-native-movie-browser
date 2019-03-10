@@ -21,14 +21,19 @@ export const fetchRandom = async () => {
         const response = await fetch(url)
         const results = await response.json()
         console.log(results)
+        //const array = Object.entries(results)
         //results = results.concat(json.response)
+        //console.log(array.map(processMovie))
+        //return array.map(processMovie)
+        //console.log(processMovie(results))
+        //test = processMovie(results)
         return results
     } catch (err) {
         return console.log(err)
     }
 }
 
-fetchRandom()
+
 /* 
 export const fetchMovies = async (response) => {
     const url = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${response}`

@@ -10,7 +10,7 @@ export default class MovieRouteComponent extends React.Component {
     }
       
       componentDidMount() {
-        this.getRandomMovie(this.props.navigation.getParam('id', 'n/a'))
+        this.getRandomMovie()
       }
 
       getRandomMovie = async () => {
@@ -27,9 +27,10 @@ export default class MovieRouteComponent extends React.Component {
         this.setState({movieInfo: results})
       } */
     render() {
-        const { navigation } = this.props
-        const title = navigation.getParam('title', 'N/A');
-        const img = navigation.getParam('img', 'https://banner2.kisspng.com/20180216/kee/kisspng-photographic-film-reel-clip-art-movie-film-5a8677562304e0.0541516415187618141435.jpg');
+        //const { navigation } = this.props
+        // const title = navigation.getParam('title', 'N/A');
+        //const img = navigation.getParam('img', 'https://banner2.kisspng.com/20180216/kee/kisspng-photographic-film-reel-clip-art-movie-film-5a8677562304e0.0541516415187618141435.jpg');
+        //console.log(this.state.movieInfo.Poster)
         return (
             <View style={styles.movieContainer}> 
                 <Button title="go back" 
@@ -37,15 +38,20 @@ export default class MovieRouteComponent extends React.Component {
                         this.props.navigation.navigate('MainRoute')
                         }
                     }/>
-                <Image
-                        style={styles.image}
-                        source={{ uri: img }}
-                        resizeMode='stretch'
-                    />
-                <Text>{title}</Text>
+                    {this.state.movieInfo &&
+                        this.state.movieInfo.Poster ? (
+                            <Image 
+                            resizeMode="cover" 
+                            source={{uri: this.state.movieInfo.Poster}} 
+                            style={{height: 300, width: 300}}
+                            />
+                        ) : null
+                    }
                     {this.state.movieInfo &&
                         <View>
-                            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>{this.state.movieInfo.Year}</Text>
+                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+                            {this.state.movieInfo.Title}</Text>
+                            <Text style={{ fontSize: 16}}>{this.state.movieInfo.Year}</Text>
                             <Text>Genre: {this.state.movieInfo.Genre}</Text>
                             <Text>Rated: {this.state.movieInfo.Rated}</Text>
                             <Text>Released: {this.state.movieInfo.Released}</Text>
