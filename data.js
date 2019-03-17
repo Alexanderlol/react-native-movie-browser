@@ -21,12 +21,6 @@ export const fetchRandom = async () => {
         const response = await fetch(url)
         const results = await response.json()
         console.log(results)
-        //const array = Object.entries(results)
-        //results = results.concat(json.response)
-        //console.log(array.map(processMovie))
-        //return array.map(processMovie)
-        //console.log(processMovie(results))
-        //test = processMovie(results)
         return results
     } catch (err) {
         return console.log(err)
@@ -34,35 +28,19 @@ export const fetchRandom = async () => {
 }
 
 
-/* 
+
 export const fetchMovies = async (response) => {
     const url = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${response}`
-    try {
+    try{
         const response = await fetch(url)
-        const { Search, totalResults } = await response.json()
-        const allMovies = Search
-        // if more than 10 results, get rest of pages
-        const numPages = Math.ceil(+totalResults / 10);
-        for (const i = 2; i <= numPages && i <= MAX_PAGES; i++) {
-            // (async function moreMovies() {
-            const response = await fetch(url + `&page=${i}`)
-            // const { Search } = await response.json()
-            // console.log(`page ${i}:`)
-            const json = await response.json()
-            console.log('pushing to Search')
-            allMovies = allMovies.concat(json.Search)
-            // return Search
-            // })
-            // Search.push(moreMovies())
-        }
-        console.log('returning Search now')
-        return allMovies.map(processMovie)
-    } catch (err) {
+        const search = await response.json()
+        return search
+    } catch(err) {
         return console.log(err)
     }
 }
 
-export const fetchById = async (id) => {
+/* export const fetchById = async (id) => {
     const url = `http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
     try {
         const response = await fetch(url)
@@ -71,4 +49,4 @@ export const fetchById = async (id) => {
     } catch (err) {
         return console.log(err)
     }
-} */
+}  */

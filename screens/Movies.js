@@ -27,10 +27,6 @@ export default class MovieRouteComponent extends React.Component {
         this.setState({movieInfo: results})
       } */
     render() {
-        //const { navigation } = this.props
-        // const title = navigation.getParam('title', 'N/A');
-        //const img = navigation.getParam('img', 'https://banner2.kisspng.com/20180216/kee/kisspng-photographic-film-reel-clip-art-movie-film-5a8677562304e0.0541516415187618141435.jpg');
-        //console.log(this.state.movieInfo.Poster)
         return (
             <View style={styles.movieContainer}> 
                 <Button title="go back" 
