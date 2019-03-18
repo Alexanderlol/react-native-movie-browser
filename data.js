@@ -15,7 +15,7 @@ const processMovie = (movie) => ({
     imdbID: movie.imdbID
 })
 
-export const fetchRandom = async () => {
+/* export const fetchRandom = async () => {
     const url = `http://www.omdbapi.com/?apikey=${API_KEY}&t=${randomMovie}`
     try {
         const response = await fetch(url)
@@ -25,7 +25,7 @@ export const fetchRandom = async () => {
     } catch (err) {
         return console.log(err)
     }
-}
+} */
 
 
 
@@ -33,14 +33,14 @@ export const fetchMovies = async (response) => {
     const url = `http://www.omdbapi.com/?apikey=${API_KEY}&s=${response}`
     try{
         const response = await fetch(url)
-        const search = await response.json()
-        return search
+        const {Search} = await response.json()
+        return Search
     } catch(err) {
         return console.log(err)
     }
 }
 
-/* export const fetchById = async (id) => {
+export const fetchById = async (id) => {
     const url = `http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`
     try {
         const response = await fetch(url)
@@ -49,4 +49,4 @@ export const fetchMovies = async (response) => {
     } catch (err) {
         return console.log(err)
     }
-}  */
+}  

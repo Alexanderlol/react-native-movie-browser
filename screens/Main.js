@@ -22,7 +22,20 @@ export default class MainRouteComponent extends React.Component {
         this.setState({movies: results})
     }
 
+    movieTitle = ({ item }) => {
+      return (
+        <TouchableHighlight>
+          <View>
+            <Text>{item.Title}</Text>
+          </View>
+        </TouchableHighlight>
+      )
+  }
+
     render() {
+      //const data = this.state.movies ? Object.entries(this.state.movies) : []
+      var data = this.state.movies
+      //var result = data ? Object.keys(data).map(key => ({ key, value: data[key] })) : []
       return (
         <View style={styles.mainContainer}> 
             <TextInput
@@ -30,14 +43,19 @@ export default class MainRouteComponent extends React.Component {
             value={this.state.text}
             onChangeText={(text) => this.setState({ text })} value={this.state.text}
             />
-            <Button title="go to movie screen" 
+            <Button title="go to movie screen"
                   onPress={() => {
-                    this.props.navigation.navigate('MovieRoute')
+                    this.props.navigation.navigate('MovieRoute', {title: this.state.movies})
                   }}/>
             <Button title="test" 
                   onPress={() => {
-                    console.log(this.state.movies)
+                    console.log(data)
                   }}/>
+            <FlatList
+              data={data}
+              renderItem={this.movieTitle}
+              keyExtractor={(item) => item.Title + item.imdbID}
+            />
         </View>
       );
     }

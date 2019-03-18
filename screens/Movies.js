@@ -8,24 +8,27 @@ export default class MovieRouteComponent extends React.Component {
             movieInfo: null
         }
     }
+      // CANT FIGURE OUT HOW TO RENDER SEARCH TO MOVIE ROUTE
+      // HOW DO THEY CONNECT?
+
       
       componentDidMount() {
-        this.getRandomMovie()
-      }
-
-      getRandomMovie = async () => {
-          const results = await fetchRandom()
-          this.setState({movieInfo: results})
-      }
-
-     /*  componentDidMount() {
         this.getMoviesById(this.props.navigation.getParam('id', 'n/a'))
       }
-    
-      getMoviesById = async () => {
-        const results = await fetchById()
+      getMoviesById = async (id) => {
+        const results = await fetchById(id)
         this.setState({movieInfo: results})
+      }
+      /* getRandomMovie = async () => {
+          const results = await fetchRandom()
+          this.setState({movieInfo: results})
       } */
+
+     /*  componentDidMount() {
+        this.getRandomMovie()???????
+      }
+      */
+
     render() {
         return (
             <View style={styles.movieContainer}> 
