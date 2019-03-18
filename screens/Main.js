@@ -24,7 +24,7 @@ export default class MainRouteComponent extends React.Component {
 
     movieTitle = ({ item }) => {
       return (
-        <TouchableHighlight>
+        <TouchableHighlight underlayColor='#ddd' onPress={() => { this.props.navigation.navigate('MovieRoute', { title: item.title, id: item.imdbID }) }}>
           <View>
             <Text>{item.Title}</Text>
           </View>
