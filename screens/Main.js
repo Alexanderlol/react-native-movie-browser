@@ -24,9 +24,13 @@ export default class MainRouteComponent extends React.Component {
 
     movieTitle = ({ item }) => {
       return (
-        <TouchableHighlight underlayColor='#ddd' onPress={() => { this.props.navigation.navigate('MovieRoute', { title: item.title, id: item.imdbID }) }}>
+        <TouchableHighlight
+          style= {styles.highlight} 
+          underlayColor='white' 
+          onPress={() => { this.props.navigation.navigate('MovieRoute', { title: item.title, id: item.imdbID }) }}
+        >
           <View>
-            <Text>{item.Title}</Text>
+            <Text style={styles.title}>{item.Title}</Text>
           </View>
         </TouchableHighlight>
       )
@@ -38,20 +42,16 @@ export default class MainRouteComponent extends React.Component {
       //var result = data ? Object.keys(data).map(key => ({ key, value: data[key] })) : []
       return (
         <View style={styles.mainContainer}> 
+          <View style={styles.textArea}>
             <TextInput
+            style = {styles.textInput}
             placeholder='enter movie to search for..'
             value={this.state.text}
             onChangeText={(text) => this.setState({ text })} value={this.state.text}
             />
-            <Button title="go to movie screen"
-                  onPress={() => {
-                    this.props.navigation.navigate('MovieRoute', {title: this.state.movies})
-                  }}/>
-            <Button title="test" 
-                  onPress={() => {
-                    console.log(data)
-                  }}/>
+          </View>
             <FlatList
+              style = {styles.flatList}
               data={data}
               renderItem={this.movieTitle}
               keyExtractor={(item) => item.Title + item.imdbID}
@@ -78,4 +78,37 @@ export default class MainRouteComponent extends React.Component {
       borderWidth: 25,
       borderColor: 'orange',
     },
+    textArea: {
+      backgroundColor: 'white',
+      borderColor: 'teal',
+      borderWidth: 4,
+      borderRadius: 10,
+      marginTop: 100,
+      marginBottom: 50,
+    },
+    textInput: {
+      backgroundColor: 'white',
+      borderColor: 'teal',
+      borderWidth: 1,
+      width: 200,
+      padding: 25,
+      fontSize: 16,
+    },
+    flatList: {
+      marginTop: 10,
+      fontSize: 30,
+      backgroundColor: 'white',
+    },
+    highlight: {
+      backgroundColor: 'teal',
+      padding: 5,
+      borderColor: 'white',
+      borderWidth: 1,
+      borderRadius: 5,
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'white',
+    }
   });
