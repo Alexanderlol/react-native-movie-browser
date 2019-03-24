@@ -110,5 +110,5 @@ export default class MainRouteComponent extends React.Component {
       fontSize: 20,
       fontWeight: 'bold',
       color: 'white',
-    }
+    },
   });

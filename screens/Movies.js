@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Button, TouchableHighlight, FlatList, View, TextInput, ScrollView, Text, StyleSheet } from 'react-native';
+import { Image, Button, TouchableOpacity, FlatList, View, TextInput, ScrollView, Text, StyleSheet } from 'react-native';
 import { fetchById, fetchRandom } from '../data'
 export default class MovieRouteComponent extends React.Component {
     constructor(props) {
@@ -32,32 +32,35 @@ export default class MovieRouteComponent extends React.Component {
     render() {
         return (
             <View style={styles.movieContainer}> 
-                <Button title="go back" 
+                <TouchableOpacity 
+                    style={styles.touchableOp}
                     onPress={() => {
                         this.props.navigation.navigate('MainRoute')
                         }
-                    }/>
+                    }
+                    >
+                    <Text style={styles.touchableText}>Go Back</Text>
+                </TouchableOpacity>
                     {this.state.movieInfo &&
                         this.state.movieInfo.Poster ? (
                             <Image 
                             resizeMode="cover" 
                             source={{uri: this.state.movieInfo.Poster}} 
-                            style={{height: 300, width: 300}}
+                            style={styles.image}
                             />
                         ) : null
                     }
                     {this.state.movieInfo &&
                         <View>
-                            <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                            {this.state.movieInfo.Title}</Text>
-                            <Text style={{ fontSize: 16}}>{this.state.movieInfo.Year}</Text>
+                            <Text style={styles.title}>{this.state.movieInfo.Title}</Text>
+                            <Text>Year: {this.state.movieInfo.Released}</Text>
                             <Text>Genre: {this.state.movieInfo.Genre}</Text>
                             <Text>Rated: {this.state.movieInfo.Rated}</Text>
-                            <Text>Released: {this.state.movieInfo.Released}</Text>
-                            <Text>{this.state.movieInfo.Runtime}</Text>
                             <Text>{this.state.movieInfo.Director}</Text>
-                            <Text style={{marginTop:10}}>{this.state.movieInfo.Actors}</Text>
-                            <Text style={{marginTop:10, fontStyle: 'italic'}}>{this.state.movieInfo.Plot}</Text>
+                            <Text>--------------------</Text>
+                            <Text style={styles.actors}>{this.state.movieInfo.Actors}</Text>
+                            <Text>--------------------</Text>
+                            <Text style={styles.plot}>{this.state.movieInfo.Plot}</Text>
                         </View>
                     }
             </View>
@@ -66,14 +69,6 @@ export default class MovieRouteComponent extends React.Component {
   }
 
   const styles = StyleSheet.create({
-    mainContainer: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderWidth: 25,
-      borderColor: 'teal',
-    },
     movieContainer: {
       flex: 1,
       backgroundColor: '#fff',
@@ -81,5 +76,36 @@ export default class MovieRouteComponent extends React.Component {
       justifyContent: 'center',
       borderWidth: 25,
       borderColor: 'orange',
+      padding: 5,
     },
+    image: {
+      width: 300,
+      height: 300,
+      borderColor: 'orange',
+      borderWidth: 5,
+      marginBottom: 50,
+    },
+    plot: {
+      marginTop: 5,
+      fontWeight: 'bold',
+    },
+    actors: {
+      marginTop: 5,
+      fontStyle: 'italic',
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: 'black',
+    },
+    touchableOp: {
+      backgroundColor: 'orange',
+      borderRadius: 5,
+      padding: 10,
+      marginBottom: 50,
+    },
+    touchableText: {
+      fontSize: 20,
+      color: 'white',
+    }
   });
